@@ -6,10 +6,10 @@ import { GetCategoryByIdController } from "./controllers/GetCategoryByIdControll
 import { UpdateCategoryController } from "./controllers/UpdateCategoryController";
 
 import { CreateMovieController } from "./controllers/CreateMovieController";
-//import { DeleteMovieController } from "./controllers/DeleteMovieController";
+import { DeleteMovieController } from "./controllers/DeleteMovieController";
 import { GetAllMoviesController } from "./controllers/GetAllMoviesController";
-//import { GetMovieByIdController } from "./controllers/GetMovieByIdController";
-//import { UpdateMovieController } from "./controllers/UpdateMovieController";
+import { GetMovieByIdController } from "./controllers/GetMovieByIdController";
+import { UpdateMovieController } from "./controllers/UpdateMovieController";
 
 const routes = Router();
 
@@ -20,9 +20,9 @@ routes.put("/category/:id", new UpdateCategoryController().handle);
 routes.delete("/category/:id", new DeleteCategoryController().handle);
 
 routes.get("/movies", new GetAllMoviesController().handle);
-//routes.get("/movies/:id", new GetMovieByIdController().handle);
+routes.get("/movies/:id", new GetMovieByIdController().handle);
 routes.post("/movies", new CreateMovieController().handle);
-//routes.put("/movies/:id", new UpdateMovieController().handle);
-//routes.delete("/movies/:id", new DeleteMovieController().handle);
+routes.put("/movies/:id", new UpdateMovieController().handle);
+routes.delete("/movies/:id", new DeleteMovieController().handle);
 
 export { routes };
