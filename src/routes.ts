@@ -1,4 +1,10 @@
 import { Router } from "express";
+
+import AuthMiddleware from "./middlewares/AuthMiddleware";
+
+import { CreateUserController } from "./controllers/CreateUserController";
+import { AuthController } from "./controllers/AuthController";
+
 import { CreateCategoryController } from "./controllers/CreateCategoryController";
 import { DeleteCategoryController } from "./controllers/DeleteCategoryController";
 import { GetAllCategoriesController } from "./controllers/GetAllCategoriesController";
@@ -12,6 +18,11 @@ import { GetMovieByIdController } from "./controllers/GetMovieByIdController";
 import { UpdateMovieController } from "./controllers/UpdateMovieController";
 
 const routes = Router();
+
+routes.post("/user", new CreateUserController().handle);
+routes.post("/login", new AuthController().handle);
+
+routes.use(AuthMiddleware);
 
 routes.get("/categories", new GetAllCategoriesController().handle);
 routes.get("/category/:id", new GetCategoryByIdController().handle);
