@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 const api = chai.request(app).keepOpen();
 
 describe("/GET to return categories array ", () => {
-  it("shoud return status 200", () => {
+  it("should return status 200", () => {
     api.get("/categories").end((res: Response) => {
       expect(res.status).to.be.equal(200);
     });
