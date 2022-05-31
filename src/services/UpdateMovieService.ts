@@ -11,8 +11,8 @@ type MovieUpdateRequest = {
 
 export class UpdateMovieService {
   async execute({ id, name, year, director, category_id }: MovieUpdateRequest) {
-    const repo = getRepository(Movies);
-    const movie = await repo.findOne(id);
+    const entity = getRepository(Movies);
+    const movie = await entity.findOne(id);
     if (!movie) {
       return new Error(`Movie not found`);
     }
@@ -21,7 +21,7 @@ export class UpdateMovieService {
     movie.year = year ?? movie.year;
     movie.director = director ?? movie.director;
     movie.category_id = category_id ?? movie.category_id;
-    await repo.save(movie);
+    await entity.save(movie);
 
     return movie;
   }

@@ -9,12 +9,12 @@ type UserRequest = {
 
 export class CreateUserService {
   async execute({ name, email, password }: UserRequest): Promise<User | Error> {
-    const repo = getRepository(User);
-    if (await repo.findOne({ email })) {
+    const entity = getRepository(User);
+    if (await entity.findOne({ email })) {
       return new Error(`User ${email} already exists`);
     }
-    const user = repo.create({ name, email, password });
-    await repo.save(user);
+    const user = entity.create({ name, email, password });
+    await entity.save(user);
     return user;
   }
 }

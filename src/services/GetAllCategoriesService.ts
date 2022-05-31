@@ -3,8 +3,8 @@ import { Category } from "../entities/Category";
 
 export class GetAllCategoriesService {
   async execute() {
-    const repo = getRepository(Category);
-    const categories = await repo.find();
+    const entity = getRepository(Category);
+    const categories = await entity.find();
 
     return categories;
   }

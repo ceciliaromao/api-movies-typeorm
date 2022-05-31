@@ -11,9 +11,9 @@ type UserRequest = {
 
 export class AuthService {
   async execute({ email, password }: UserRequest) {
-    const repo = getRepository(User);
+    const entity = getRepository(User);
 
-    const user = await repo.findOne({ email });
+    const user = await entity.findOne({ email });
     if (!user) {
       return new Error(`Incorrect Email or Password`);
     }

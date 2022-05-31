@@ -7,12 +7,12 @@ type CategoryRequest = {
 
 export class CreateCategoryService {
   async execute({ name }: CategoryRequest): Promise<Category | Error> {
-    const repo = getRepository(Category);
-    if (await repo.findOne({ name })) {
+    const entity = getRepository(Category);
+    if (await entity.findOne({ name })) {
       return new Error(`Category ${name} already exists`);
     }
-    const category = repo.create({ name });
-    await repo.save(category);
+    const category = entity.create({ name });
+    await entity.save(category);
     return category;
   }
 }

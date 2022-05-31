@@ -16,15 +16,15 @@ export class CreateMovieService {
     director,
     category_id,
   }: MovieRequest): Promise<Movies | Error> {
-    const repo = getRepository(Movies);
+    const entity = getRepository(Movies);
     const repoCategory = getRepository(Category);
 
     if (!(await repoCategory.findOne(category_id))) {
       return new Error(`Category ${category_id} not found`);
     }
 
-    const Movie = repo.create({ name, year, director, category_id });
-    await repo.save(Movie);
+    const Movie = entity.create({ name, year, director, category_id });
+    await entity.save(Movie);
     return Movie;
   }
 }

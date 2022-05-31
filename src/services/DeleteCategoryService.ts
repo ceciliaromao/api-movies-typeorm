@@ -3,11 +3,11 @@ import { Category } from "../entities/Category";
 
 export class DeleteCategoryService {
   async execute(id: string) {
-    const repo = getRepository(Category);
-    if (!(await repo.findOne(id))) {
+    const entity = getRepository(Category);
+    if (!(await entity.findOne(id))) {
       return new Error(`Cannot delete ${id}`);
     }
 
-    await repo.delete(id);
+    await entity.delete(id);
   }
 }

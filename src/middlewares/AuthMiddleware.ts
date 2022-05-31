@@ -27,16 +27,14 @@ export default async function AuthMiddleware(
     const token = authorization.replace("Bearer", "").trim();
     const data = jwt.verify(token, SenhaHash);
     const { id } = data as TokenPayload;
-    req.userId = id;
 
-    const repo = getRepository(User);
-    const findToken = await repo.findOne({ id });
+    const entity = getRepository(User);
+    const findToken = await entity.findOne({ id });
     if (!findToken) {
       return new Error(`User not found`);
     }
 
     const { password, ...user } = findToken;
-    req.user = user;
 
     return next();
   } catch (err) {

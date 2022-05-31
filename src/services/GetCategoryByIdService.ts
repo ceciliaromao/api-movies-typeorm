@@ -3,8 +3,8 @@ import { Category } from "../entities/Category";
 
 export class GetCategoryByIdService {
   async execute(id: string) {
-    const repo = getRepository(Category);
-    const category = await repo.findOne(id);
+    const entity = getRepository(Category);
+    const category = await entity.findOne(id);
     if (!category) {
       return new Error(`Category not found`);
     }
