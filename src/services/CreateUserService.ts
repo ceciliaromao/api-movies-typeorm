@@ -10,6 +10,9 @@ type UserRequest = {
 export class CreateUserService {
   async execute({ name, email, password }: UserRequest): Promise<User | Error> {
     const entity = getRepository(User);
+    if (!name || !email || !password) {
+      return new Error(`Incomplete data`);
+    }
     if (await entity.findOne({ email })) {
       return new Error(`User ${email} already exists`);
     }

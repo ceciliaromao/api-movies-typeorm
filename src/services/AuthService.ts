@@ -12,6 +12,9 @@ type UserRequest = {
 export class AuthService {
   async execute({ email, password }: UserRequest) {
     const entity = getRepository(User);
+    if (!email || !password) {
+      return new Error(`Incomplete data`);
+    }
 
     const user = await entity.findOne({ email });
     if (!user) {
