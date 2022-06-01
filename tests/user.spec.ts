@@ -1,6 +1,6 @@
 import { Response } from "express";
 import app from "../src/server";
-import chai, { expect } from "chai";
+import chai from "chai";
 import chaiHttp from "chai-http";
 import "mocha";
 
@@ -19,7 +19,7 @@ describe("/POST to create new user", () => {
       .post("/user")
       .send(data)
       .end((res: Response) => {
-        expect(res.status).to.be.equal(201);
+        res.should.have.status(201);
       });
   });
 
@@ -33,7 +33,7 @@ describe("/POST to create new user", () => {
       .post("/user")
       .send(data)
       .end((res: Response) => {
-        expect(res.status).to.be.equal(400);
+        res.should.have.status(400);
       });
   });
 });
