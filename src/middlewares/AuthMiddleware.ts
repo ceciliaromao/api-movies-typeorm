@@ -4,7 +4,6 @@ import { User } from "../entities/User";
 
 import "../database";
 import jwt from "jsonwebtoken";
-import { SenhaHash } from "../senhaHash";
 
 interface TokenPayload {
   id: string;
@@ -25,7 +24,7 @@ export default async function AuthMiddleware(
 
   try {
     const token = authorization.replace("Bearer", "").trim();
-    const data = jwt.verify(token, SenhaHash);
+    const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const { id } = data as TokenPayload;
 
     const entity = getRepository(User);

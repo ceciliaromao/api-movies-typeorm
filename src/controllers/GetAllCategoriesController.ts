@@ -5,7 +5,6 @@ export class GetAllCategoriesController {
   async handle(req: Request, res: Response) {
     const service = new GetAllCategoriesService();
     const categories = await service.execute();
-
     return res.status(200).json(categories);
   }
 }
